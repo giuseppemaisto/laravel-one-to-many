@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('_posts', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
 
             $table->unsignedBigInteger('type_id')
             ->nullable()
@@ -33,8 +33,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('_posts', function (Blueprint $table) {
-            //
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropForeign('posts_type_id_foreign');
+            $table->dropColumn('type_id');
         });
     }
 };
