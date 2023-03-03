@@ -29,6 +29,16 @@ class UpdatePostRequest extends FormRequest
             'title'=>['required', Rule::unique('posts')->ignore($this->post), 'max:150'],
             'language'=>['required'],
             'description'=>['nullable'],
+            'type_id'=>['nullable','exists:types,id'],
+        ];
+    }
+
+    public function message(){
+        return[
+            'title.required'=>'titolo obbligatorio',
+            'title.unique'=>'titolo già presente',
+            'title.max'=>'titolo troppo lungo',
+            'language.required'=>'il linguaggio è obbligatorio',
         ];
     }
 }

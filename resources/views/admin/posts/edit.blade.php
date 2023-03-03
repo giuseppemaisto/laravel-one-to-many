@@ -32,6 +32,18 @@
                     </label>
                     <input type="text" class="form-control" placeholder="inserisci linguaggio di  programmazione" id="language" name="language" value="{{old('language') ?? $post->language}}">
                 </div>
+
+                <div class="form-group my-3">
+                    <label class="control-label">
+                        Categoria
+                    </label>
+                    <select name="type_id" id="type_id">
+                        @foreach($types as $type)
+                        <option value="{{$type->id}}" {{ $type->id == old('type_id', $post->type_id) ? 'selected' : ''}}>{{$type->name}}</option>
+                        @endforeach
+                    </select>
+                
+                </div>
                 
 
                 <div class="form-group my-3">
