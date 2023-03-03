@@ -18,6 +18,8 @@
                 <p>{{$post->title}}</p>
                 <strong>linguaggio</strong>
                 <p>{{$post->language}}</p>
+                <strong>categoria</strong>
+                <p>{{$post->type ? $post->type->name : 'nessuna categoria selezionata'}}</p>
                 <strong>descrizione</strong>
                 <p>{{$post->description}}</p>
             </div>
