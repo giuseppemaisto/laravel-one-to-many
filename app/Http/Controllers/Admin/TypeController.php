@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Type;
+use App\Models\Post;
 
 class TypeController extends Controller
 {
@@ -26,7 +28,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.types.create');
     }
 
     /**
@@ -37,7 +39,14 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
+        $form_data = $request->validated();
+        $slug = Post::generateSlug($request->name);
+        $form_data['slug'] = $slug;
+
+        $newtype = new type();
+        $newtype->fill($form_data);
+        $newtype->save();
+        return redirect()->route('admin.types.index')->with('message','categoria creata correttamente');
     }
 
     /**

@@ -29,6 +29,7 @@
                     <th><strong>id</strong></th>
                     <th><strong>nome</strong></th>
                     <th><strong>slug</strong></th>
+                    <th><strong>progetti</strong></th>
                     <th><strong>azioni</strong></th>
                 </thead>
                 <tbody>
@@ -37,8 +38,16 @@
                         <td>{{$type->id}}</td>
                         <td>{{$type->name}}</td>
                         <td>{{$type->slug}}</td>
-                        <td>
+                        <td>{{count($type->posts)}}</td>
+                        <td class="d-flex ">
                             <a href="{{ route('admin.types.show', $type->slug)}}" class="btn btn-square btn-primary"><i class="fas fa-eye"></i></a>
+                            <a href="{{ route('admin.types.edit', $type->slug)}}" title="visualizza dettaglio" class="btn btn-square btn-warning mx-2"><i class="fas fa-edit"></i></a>
+
+                            <form action="{{route('admin.types.destroy', $type->slug)}}" method="POST">
+                                @csrf 
+                                @method('DELETE')
+                                <button class="btn btn-square btn-danger" type="submit"><i class="fas fa-trash"></i></button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
