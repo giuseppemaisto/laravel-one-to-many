@@ -24,7 +24,7 @@ class UpdateTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            
+            'name'=>['required', Rule::unique('types')->ignore($this->type)]
         ];
     }
 }

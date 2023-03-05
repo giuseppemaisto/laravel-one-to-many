@@ -10,7 +10,7 @@ class Type extends Model
 {
     use HasFactory;
 
-    protected $Fillable=['name','slug'];
+    protected $fillable = ['name','slug'];
     public function Posts(){
         return $this->hasMany(Post::class);
     }
