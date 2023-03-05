@@ -68,7 +68,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
@@ -80,7 +80,13 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        
+        $form_data = $request->validated();
+        $slug = Post::generateSlug($request->name);
+        $form_data['slug'] = $slug;
+
+       $type->update($form_data);
+        return redirect()->route('admin.types.index')->with('message','categoria modificata correttamente');
     }
 
     /**
@@ -91,6 +97,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return redirect()->route('admin.types.index')->with('message','categoria eliminata correttamente');
     }
 }
