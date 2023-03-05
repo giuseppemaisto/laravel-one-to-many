@@ -7,7 +7,7 @@
                     <h2>dettaglio: {{ $type->name }}</h2>
                 </div>
                 <div>
-                    <a href="{{route('admin.types.index')}}" class="btn btn-primary">torna all'elenco</a>
+                    <a href="{{route('admin.types.index')}}" class="btn btn-primary">torna alle categorie</a>
                 </div>
                
             </div>
